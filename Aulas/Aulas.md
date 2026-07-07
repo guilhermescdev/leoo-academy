@@ -1,4 +1,4 @@
-# LEOO Academy
+# Aulas
 
 - [Aula 1: CRM Salesforce](#aula-1---crm-salesforce)
 - [Aula 2: Noções Básicas e Introdução ao Sales e Service Cloud](#aula-2---noções-básicas-e-introdução-ao-sales-e-service-cloud)

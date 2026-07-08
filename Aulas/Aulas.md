@@ -2,6 +2,13 @@
 
 - [Aula 1: CRM Salesforce](#aula-1---crm-salesforce)
 - [Aula 2: Noções Básicas e Introdução ao Sales e Service Cloud](#aula-2---noções-básicas-e-introdução-ao-sales-e-service-cloud)
+- [Aula 3: Sales e Service Cloud](#aula-3---sales-e-service-cloud)
+- [Aula 4: Navegando entre Aplicativos e Configurações](#aula-4---navegando-entre-aplicativos-e-configurações)
+- [Aula 5: Personalização do Lightning Experience](#aula-5---personalização-do-lightning-experience)
+- [Aula 6: Modelagem de Dados](#aula-6---modelagem-de-dados)
+- [Aula 7: Segurança de Dados](#aula-7---segurança-de-dados)
+- [Aula 9: Organizando Demandas](#aula-9---organizando-demandas)
+- [Aula 10: Relatórios e Painéis](#aula-10---relatórios-e-painéis)
 
 # Aula 1 - CRM Salesforce
 
@@ -102,10 +109,10 @@
    > Alguns concorrentes do Salesforce são Microsoft Dynamics 365, HubSpot CRM, Zoho CRM, SAP Customer Experience, Oracle CX e Pipedrive. Todos oferecem soluções para gestão de clientes, vendas e atendimento.
 
 3. Trailhead:
-   1. Salesforce CRM
-      > Concluído.
-   2. Noções básicas da Salesforce Platform
-      > Concluído.
+   - Salesforce CRM
+     > Concluído.
+   - Noções básicas da Salesforce Platform
+     > Concluído.
 
 # Aula 2 - Noções Básicas e Introdução ao Sales e Service Cloud
 
@@ -370,7 +377,753 @@
    > As duas nuvens compartilham os mesmos dados dos clientes. Enquanto o Sales Cloud ajuda a equipe comercial a gerenciar vendas e oportunidades, o Service Cloud permite que a equipe de suporte acompanhe o histórico do cliente e ofereça um atendimento mais completo e personalizado.
 
 5. Trailhead:
-   1. Introdução ao Service Cloud
-      > Iniciado.
-   2. Introdução ao Sales Cloud
-      > Concluído.
+   - Introdução ao Service Cloud
+     > Iniciado.
+   - Introdução ao Sales Cloud
+     > Concluído.
+
+# Aula 3 - Sales e Service Cloud
+
+## Service Cloud
+
+- Plataforma de atendimento ao cliente da Salesforce.
+- Objetivos:
+  - Gerenciar casos.
+  - Automatizar processos.
+  - Oferecer suporte por múltiplos canais.
+  - Melhorar a experiência do cliente.
+
+- Benefícios:
+  - Atendimento mais eficiente.
+  - Maior produtividade dos agentes.
+  - Decisões baseadas em dados.
+
+## Sales Cloud
+
+- Plataforma de CRM voltada para vendas.
+- Objetivos:
+  - Gerenciar o processo de vendas.
+  - Aumentar a produtividade da equipe comercial.
+  - Fechar negócios com mais rapidez.
+  - Gerar insights sobre clientes.
+
+- Benefícios:
+  - Organização do funil de vendas.
+  - Melhor acompanhamento das oportunidades.
+  - Maior eficiência da equipe.
+
+## Cenário Prático
+
+- Empresa:
+  - TechSoft.
+
+- Objetivo:
+  - Criar um objeto personalizado para controlar solicitações internas.
+
+### Objeto
+
+- Label Singular:
+  - Solicitação Interna.
+
+- Label Plural:
+  - Solicitações Internas.
+
+- API Name:
+  - SolicitacaoInterna.
+
+- Configurações:
+  - Permitir Reports.
+  - Permitir Activities.
+
+### Campos
+
+- Data da Solicitação.
+- Descrição.
+- Valor Estimado.
+- Prioridade.
+
+### Personalizações
+
+- Criar campos do tipo Lista de Opções.
+- Criar Campo de Relacionamento.
+- Personalizar o Layout da página.
+- Criar Regra de Validação.
+
+## Prática
+
+1. Trailhead:
+
+- Contas e Contatos.
+  > Pendente.
+- Leads e Contatos.
+  > Pendente.
+
+# Aula 4 - Navegando entre Aplicativos e Configurações
+
+## Vissão de Usuário
+
+### Aplicativos
+
+- Conjunto de funcionalidades e personalizações para atender às necessidades de uma empresa.
+
+#### Tipos de aplicativos
+
+- Aplicativos nativos
+  - Desenvolvidos pela Salesforce.
+  - Disponíveis na AppExchange.
+  - Prontos para uso.
+
+- Aplicativos personalizados
+  - Desenvolvidos por empresas ou desenvolvedores.
+  - Criados com a plataforma Lightning.
+  - Atendem necessidades específicas do negócio.
+
+### Navegação
+
+#### Barra de navegação superior
+
+- Permite acessar:
+  - Início.
+  - Contas.
+  - Contatos.
+  - Oportunidades.
+  - Leads.
+  - Relatórios.
+  - Dashboards.
+  - Configuração.
+
+#### Menu de aplicativos
+
+- Permite alternar entre os aplicativos instalados.
+
+#### Barra lateral
+
+- Acesso rápido para:
+  - Listas.
+  - Calendário.
+  - Tarefas.
+  - Notas.
+
+#### Pesquisa
+
+- Localiza rapidamente:
+  - Registros.
+  - Relatórios.
+  - Dashboards.
+  - Outros dados.
+
+#### Personalização
+
+- Permite:
+  - Ajustar layouts.
+  - Criar favoritos.
+  - Adicionar atalhos.
+  - Configurar notificações.
+
+#### Atalhos
+
+- Acesso rápido para:
+  - Páginas.
+  - Registros.
+  - Relatórios.
+
+## Visão de Administrador
+
+### Configuração
+
+#### Como acessar
+
+- Fazer login no Salesforce.
+- Clicar no ícone de engrenagem.
+- Selecionar Configuração (Setup).
+
+#### Principais recursos
+
+- Usuários e Permissões.
+- Objetos e Campos.
+- Automações (Flows).
+- Relatórios e Dashboards.
+- Integrações.
+
+- O acesso depende das permissões do usuário.
+
+## Prática
+
+1.  O que são aplicativos dentro da arquitetura Salesforce?
+
+    > Pendente.
+
+2.  Do que é composto um aplicativo? Cite um cenário utilizando Sales Cloud e outro utilizando Service Cloud.
+
+    > Pendente.
+
+3.  Quais recursos podem ser utilizados para personalizar um aplicativo? Cite alguns exemplos e seus objetivos.
+
+    > Pendente.
+
+4.  Trailhead
+    - Configurar sua organização.
+      > Pendente.
+    - Criar e personalizar aplicativos do Lightning.
+      > Pendente.
+    - Introdução ao Criador de Aplicativo Lightning.
+      > Pendente.
+
+# Aula 5 - Personalização do Lightning Experience
+
+## Modos de Exibição de Lista
+
+- Permitem visualizar e gerenciar registros de diferentes formas.
+
+### List View
+
+- Exibe os registros em formato de tabela.
+- Permite:
+  - Personalizar colunas.
+  - Aplicar filtros.
+  - Salvar visualizações.
+
+### Kanban View
+
+- Exibe os registros em cartões organizados por colunas.
+- Ideal para:
+  - Acompanhar pipelines.
+  - Gerenciar fluxos de trabalho.
+- Permite mover registros entre colunas.
+
+### Split View
+
+- Exibe a lista de registros e os detalhes do registro selecionado.
+- Facilita a navegação e edição de vários registros.
+
+### Recursos das Visualizações
+
+- Personalização de colunas.
+- Filtros avançados.
+- Pesquisa de registros.
+- Ações em massa.
+- Salvamento e compartilhamento de visualizações.
+
+## Layouts Compactos
+
+- Definem quais campos aparecem no resumo dos registros.
+- Destacam as informações mais importantes.
+- São configurados separadamente dos layouts de página.
+
+## Personalização da Página de Registro
+
+- Permite adaptar a interface às necessidades da organização.
+
+### Benefícios
+
+- Melhor usabilidade.
+- Exibição das informações mais relevantes.
+- Maior automação dos processos.
+- Mais consistência dos dados.
+
+## Lightning App Builder
+
+- Ferramenta para criar e personalizar páginas.
+
+### Permite
+
+- Criar ou editar páginas.
+- Adicionar componentes padrão.
+- Adicionar componentes personalizados (LWC e Aura).
+- Adicionar componentes do AppExchange.
+- Configurar componentes.
+- Definir regras de visibilidade.
+- Salvar e ativar páginas.
+
+## Botões e Links Personalizados
+
+- Adicionam funcionalidades específicas ao Salesforce.
+- Permitem integração com:
+  - URLs externas.
+  - Aplicações.
+  - Intranet.
+  - Sistemas externos.
+
+## Ações Rápidas
+
+- Permitem executar tarefas frequentes com poucos cliques.
+
+### Benefícios
+
+- Aumento da produtividade.
+- Melhor experiência do usuário.
+- Personalização para objetos e perfis.
+
+## Prática
+
+1. Trailhead:
+   - Criar e personalizar modos de exibição de lista.
+
+     > Pendente.
+
+   - Personalizar destaques de registro com layouts compactos.
+
+     > Pendente.
+
+   - Personalizar componentes e campos da página de registro.
+
+     > Pendente.
+
+   - Criar botões e links personalizados.
+
+     > Pendente.
+
+   - Fortalecer seus usuários com ações rápidas.
+
+     > Pendente.
+
+# Aula 6 - Modelagem de Dados
+
+## Campos Personalizados
+
+- Criados para armazenar informações específicas do negócio.
+
+### Tipos de Campos
+
+- Texto.
+- Área de Texto.
+- Área de Texto Longa.
+- Área de Texto Enriquecido.
+- Número.
+- Decimal.
+- Porcentagem.
+- Moeda.
+- Data.
+- Data/Hora.
+- Lista de Seleção (Picklist).
+- Lista de Seleção Múltipla.
+- Checkbox.
+- URL.
+- E-mail.
+- Telefone.
+
+## Campos de Fórmula
+
+- Calculam valores automaticamente com base em outros campos.
+- São campos somente leitura.
+- Atualizam os valores dinamicamente.
+
+### Tipos
+
+- Numérico.
+- Texto.
+- Data.
+- Booleano.
+- Moeda.
+
+### Funções Comuns
+
+- Matemáticas.
+  - ABS.
+  - ROUND.
+  - SQRT.
+
+- Lógicas.
+  - IF.
+  - AND.
+  - OR.
+  - NOT.
+
+- Texto.
+  - CONCATENATE.
+  - LEFT.
+  - RIGHT.
+  - LEN.
+
+- Data e Hora.
+  - TODAY.
+  - NOW.
+  - YEAR.
+  - MONTH.
+  - DAY.
+
+- Informações de Campos.
+  - BLANKVALUE.
+  - NULLVALUE.
+  - ISPICKVAL.
+  - CASE.
+
+## Boas Práticas
+
+- Criar fórmulas simples.
+- Testar as fórmulas.
+- Tratar valores nulos.
+- Utilizar nomenclatura consistente.
+- Criar descrições claras.
+- Utilizar regras de validação.
+- Documentar as fórmulas.
+
+## Relacionamentos
+
+- Definem como os objetos se conectam.
+
+### Lookup
+
+- Relacionamento flexível.
+- O registro filho pode existir sem o registro pai.
+- Não possui exclusão em cascata.
+
+### Master-Detail
+
+- O registro filho depende do registro pai.
+- Possui exclusão em cascata.
+- Herda permissões do registro pai.
+
+### Many-to-Many
+
+- Relaciona vários registros entre si.
+- Utiliza um objeto de junção.
+
+### Hierarchical
+
+- Utilizado apenas no objeto Usuário.
+- Cria relações hierárquicas, como gerente e subordinado.
+
+# Gerenciamento de Dados
+
+## Importação de Dados
+
+### Data Import Wizard
+
+- Ferramenta para importações simples.
+- Suporta:
+  - Até 50.000 registros.
+  - Arquivos CSV.
+  - Arquivos de até 100 MB.
+
+### Data Loader
+
+- Ferramenta para grandes volumes de dados.
+- Permite:
+  - Importar.
+  - Exportar.
+  - Atualizar.
+  - Excluir registros.
+- Suporta até 5 milhões de registros.
+
+### Importação via API
+
+- Utilizada para integrações automáticas com outros sistemas.
+
+### Ferramentas de Terceiros
+
+- Oferecem recursos adicionais para importação e validação de dados.
+
+## Workbench
+
+- Ferramenta web para trabalhar com dados e metadados.
+
+### Permite
+
+- Consultar dados.
+- Importar e exportar dados.
+- Acessar metadados.
+- Testar APIs.
+
+## Salesforce Inspector
+
+- Extensão para Chrome e Edge.
+
+### Permite
+
+- Visualizar registros.
+- Importar e exportar dados.
+- Executar consultas SOQL.
+- Inspecionar metadados.
+
+## Resumo das Ferramentas
+
+- Data Import Wizard.
+  - Importações simples.
+
+- Data Loader.
+  - Grandes volumes de dados.
+
+- Workbench.
+  - Administração, testes e consultas.
+
+- Salesforce Inspector.
+  - Produtividade e consultas rápidas.
+
+- A ferramenta ideal depende da necessidade do processo.
+
+## Prática
+
+1. Descrever as ferramentas de importação apresentadas na aula.
+
+   > Pendente.
+
+2. Trailhead:
+   - Gerenciamento de Dados.
+
+     > Pendente.
+
+   - Fórmulas e Validações.
+     > Pendente.
+
+# Aula 7 - Segurança de Dados
+
+## Estrutura de Segurança
+
+- O Salesforce utiliza diversos recursos para proteger os dados e controlar o acesso dos usuários.
+
+### Recursos de Segurança
+
+- Infraestrutura segura.
+- Criptografia de dados.
+- Controles de acesso.
+- Autenticação Multifator (MFA).
+- Monitoramento e auditoria.
+- Proteção contra ameaças.
+- Conformidade com regulamentações.
+
+## Níveis de Acesso
+
+### Perfil (Profile)
+
+- Define as permissões básicas do usuário.
+- Controla o acesso a:
+  - Objetos.
+  - Campos.
+  - Recursos da plataforma.
+
+### Função (Role)
+
+- Define a hierarquia da organização.
+- Permite acesso aos registros de usuários subordinados.
+
+### Grupo de Papéis
+
+- Compartilha registros entre usuários de diferentes funções.
+- Expande o acesso além da hierarquia.
+
+### Regras de Compartilhamento
+
+- Compartilham registros automaticamente.
+- Baseadas em critérios definidos pelo administrador.
+
+### Compartilhamento Manual
+
+- Compartilha registros individualmente.
+- Utilizado para acessos temporários ou específicos.
+
+### Permissões de Campo
+
+- Controlam quem pode:
+  - Visualizar.
+  - Editar.
+  - Alterar determinados campos.
+
+## Permission Sets
+
+- Concedem permissões adicionais sem alterar o perfil do usuário.
+- Permitem acesso a funcionalidades, objetos e dados específicos.
+- Oferecem maior flexibilidade no gerenciamento de permissões.
+
+## Caso de Uso
+
+### Empresa
+
+- LogFlash.
+
+### Produtos Utilizados
+
+- Sales Cloud.
+- Service Cloud.
+
+### Licenças
+
+- 4 Sales.
+- 4 Service.
+
+### Perfis
+
+- Vendas.
+- Atendimento.
+
+### Funções
+
+- Diretor.
+- Gerente.
+- Supervisor.
+- Vendedor.
+- Atendente.
+
+### Hierarquias
+
+- Vendas.
+  - Diretor.
+  - Gerente.
+  - Vendedor.
+
+- Atendimento.
+  - Supervisor.
+  - Atendente.
+
+### Permission Sets
+
+- Vendas.
+  - Criador e visualizador de relatórios.
+
+- Atendimento.
+  - Supervisor do Omni-Channel.
+
+## Prática
+
+1. O que são perfis e o que eles controlam?
+   > Pendente.
+2. O que são papéis e o que eles controlam?
+   > Pendente.
+3. Trailhead:
+   - Trilha Segurança de Dados.
+     > Pendente.
+
+# Aula 9 - Organizando Demandas
+
+## Etapas de um Projeto
+
+### 1. Análise e Planejamento Inicial
+
+- Levantamento dos requisitos do negócio.
+- Identificação dos desafios da empresa.
+- Mapeamento dos processos.
+- Definição dos usuários.
+- Definição dos objetivos do projeto.
+
+### 2. Design da Solução
+
+- Definição da arquitetura da solução.
+- Modelagem de objetos e campos.
+- Planejamento da segurança.
+- Definição das automações.
+- Planejamento de relatórios e dashboards.
+
+### 3. Configuração, Customização e Desenvolvimento
+
+- Configuração da organização.
+- Criação de automações.
+- Desenvolvimento de personalizações.
+- Integração com sistemas externos.
+
+### 4. Integração e Migração de Dados
+
+#### Integração
+
+- Definição da tecnologia de integração.
+- Segurança das integrações.
+- Monitoramento.
+- Tratamento de erros.
+- Testes de integração.
+
+#### Migração de Dados
+
+- Avaliação da qualidade dos dados.
+- Mapeamento dos dados.
+- Transformação dos dados.
+- Limpeza e deduplicação.
+- Backup.
+- Validação após a migração.
+
+### 5. Testes, Validação e Correções
+
+#### Testes
+
+- Testes unitários.
+- Testes funcionais.
+- Testes de integração.
+- Testes de usabilidade.
+- Testes de desempenho.
+- Testes de segurança.
+
+#### Correções
+
+- Identificação de defeitos.
+- Priorização das correções.
+- Testes de regressão.
+- Validação das correções.
+- Comunicação com as partes envolvidas.
+
+### 6. Implementação e Treinamentos
+
+#### Implementação
+
+- Planejamento da implantação.
+- Configuração do ambiente de produção.
+- Migração dos dados.
+- Validação final.
+- Atualização da documentação.
+
+#### Treinamentos
+
+- Materiais de treinamento.
+- Treinamento para administradores.
+- Treinamento para usuários finais.
+- Treinamentos avançados.
+- Coleta de feedback.
+
+## Boas Práticas
+
+- Alinhar a solução aos requisitos do negócio.
+- Seguir as boas práticas do Salesforce.
+- Documentar todas as customizações.
+- Realizar testes antes da implantação.
+- Manter comunicação constante com os stakeholders.
+
+## Prática
+
+1. Trailhead:
+   - Personalizar um Objeto do Salesforce
+     > Iniciado.
+
+# Aula 10 - Relatórios e Painéis
+
+## Conceitos Básicos
+
+### Dados x Resultados
+
+- Os dados ajudam na tomada de decisões.
+- Permitem analisar indicadores e identificar oportunidades de melhoria.
+
+## Relatórios
+
+- Conjunto de dados organizados com base em critérios.
+- Permitem:
+  - Filtrar dados.
+  - Agrupar informações.
+  - Realizar cálculos.
+  - Criar gráficos.
+
+- Utilizados para analisar informações detalhadas.
+
+## Gráficos
+
+- Representam visualmente os dados de um relatório.
+- Facilitam a análise de:
+  - Tendências.
+  - Resultados.
+  - Indicadores.
+
+## Painéis (Dashboards)
+
+- Reúnem gráficos e métricas em uma única tela.
+- Exibem informações de um mesmo tema.
+- Facilitam o acompanhamento de indicadores.
+
+## Prática
+
+1. Trailhead
+   - Criar relatórios com o Criador de Relatórios.
+     > Concluído.
+   - Filtrar seu relatório.
+     > Concluído.
+   - Formatar seu relatório.
+     > Concluído.
+   - Conheça os relatórios e os painéis do Lightning.
+     > Concluído.
+   - Visualizar seus dados com o Criador de Painéis do Lightning.
+     > Concluído.

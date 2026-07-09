@@ -1078,7 +1078,7 @@
 
 1. Trailhead:
    - Personalizar um Objeto do Salesforce
-     > Iniciado.
+     > Concluído.
 
 # Aula 10 - Relatórios e Painéis
 

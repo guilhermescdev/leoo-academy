@@ -9,6 +9,7 @@
 - [Aula 7: Segurança de Dados](#aula-7---segurança-de-dados)
 - [Aula 9: Organizando Demandas](#aula-9---organizando-demandas)
 - [Aula 10: Relatórios e Painéis](#aula-10---relatórios-e-painéis)
+- [Aula 11: Desenvolvimento Salesforce](#aula-11---desenvolvimento-salesforce)
 
 # Aula 1 - CRM Salesforce
 
@@ -1126,4 +1127,83 @@
    - Conheça os relatórios e os painéis do Lightning.
      > Concluído.
    - Visualizar seus dados com o Criador de Painéis do Lightning.
+     > Concluído.
+
+# Aula 11 - Desenvolvimento Salesforce
+
+## Apex
+
+- Principal linguagem de programação do Salesforce.
+- Baseada em Java, facilitando a adaptação para quem já conhece essa linguagem.
+- Executada no servidor (backend), sendo responsável pela lógica de negócio da aplicação.
+- Permite criar automações, validações, integrações e manipular registros diretamente no banco de dados.
+- Possui acesso transacional aos dados, permitindo realizar rollback quando necessário.
+- É uma linguagem orientada a objetos e utiliza classes, interfaces, herança, métodos e coleções.
+- Todo código Apex deve possuir testes unitários para ser implantado em produção.
+- Está sujeita aos **Governor Limits**, que limitam o uso de recursos para garantir o desempenho da plataforma.
+
+## Lightning Web Components (LWC)
+
+- Framework moderno para desenvolvimento de interfaces no Salesforce.
+- Utiliza tecnologias web padrão:
+  - HTML
+  - CSS
+  - JavaScript
+- Cria componentes reutilizáveis e responsivos.
+- Possui melhor desempenho que o Aura Components e é a tecnologia recomendada para novos projetos.
+- Pode consumir dados através do Lightning Data Service ou utilizando Apex.
+
+## Visualforce
+
+- Tecnologia utilizada para criar páginas personalizadas no Salesforce.
+- Integra HTML, CSS, JavaScript e Apex.
+- Muito utilizada em projetos antigos (legados).
+- Atualmente, para novos desenvolvimentos, o recomendado é utilizar Lightning Web Components.
+
+## SOQL (Salesforce Object Query Language)
+
+- Linguagem utilizada para consultar dados no Salesforce.
+- Muito semelhante ao SQL tradicional.
+- Permite selecionar campos específicos de um objeto.
+- Utilizada em Apex, Workbench, Developer Console e outras ferramentas da plataforma.
+
+## Apex Triggers
+
+- São blocos de código Apex executados automaticamente quando ocorre um evento em um registro.
+- Podem ser executados antes (**before**) ou depois (**after**) de operações como:
+  - Insert.
+  - Update.
+  - Delete.
+  - Undelete.
+- São utilizados para implementar regras de negócio e automatizar processos.
+- Devem seguir boas práticas, como evitar consultas dentro de loops e possuir testes unitários.
+
+## Prática
+
+1. Com suas palavras, o que são automações? Cite as principais automações.
+
+   > Automações são recursos que executam tarefas automaticamente, sem a necessidade de ação manual. As principais são Flows, Apex Triggers, Approval Processes e Validation Rules.
+
+2. Exemplos para a utilização de automações
+
+   > Enviar e-mails automaticamente, atualizar campos, criar registros relacionados, aprovar solicitações e validar informações antes de salvar um registro.
+
+3. Com suas palavras, o que seria a ordem de execução de automações? Por que isso existe?
+
+   > É a sequência em que as automações são executadas quando um registro é criado ou atualizado. Ela existe para garantir que tudo aconteça na ordem correta e evitar conflitos entre processos.
+
+4. Com suas palavras, o que são triggers?
+
+   > Triggers são blocos de código Apex executados automaticamente antes ou depois de ações como criar, atualizar ou excluir um registro.
+
+5. Qual linguagem de programação usamos no Salesforce?
+
+   > A principal linguagem de programação do Salesforce é o Apex.
+
+6. Trailhead:
+   - Código com Linguagens do Salesforce.
+     > Concluído.
+   - Banco de Dados e Noções Básicas do Apex.
+     > Concluído.
+   - Início Rápido: Apex.
      > Concluído.

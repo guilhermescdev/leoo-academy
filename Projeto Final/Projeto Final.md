@@ -1,6 +1,4 @@
-## Observação
-
-Este documento representa a modelagem inicial do projeto. Durante o desenvolvimento, requisitos, regras de negócio, objetos, campos e relacionamentos poderão ser ajustados conforme novas necessidades forem identificadas.
+> **Observação:** Este documento representa a modelagem inicial do projeto. Durante o desenvolvimento, requisitos, regras de negócio, objetos, campos e relacionamentos poderão ser ajustados conforme novas necessidades forem identificadas.
 
 # Horizon Travel
 
@@ -16,8 +14,8 @@ Armazena as informações dos clientes da Horizon Travel, incluindo dados pessoa
 
 | Campo              | Tipo             | Tamanho |
 | ------------------ | ---------------- | ------- |
-| Nome Completo      | Texto            | -       |
-| CPF                | Texto            | 11      |
+| Nome Completo      | Texto            | 50      |
+| CPF                | Texto            | 14      |
 | E-mail             | E-mail           | -       |
 | Data de Nascimento | Data             | -       |
 | Cliente VIP        | Checkbox         | -       |
@@ -29,10 +27,10 @@ Representa os destinos turísticos oferecidos pela agência, contendo informaç�
 
 | Campo             | Tipo        | Tamanho |
 | ----------------- | ----------- | ------- |
-| Nome do Destino   | Texto       | -       |
+| Nome do Destino   | Texto       | 50      |
 | País              | Picklist    | -       |
 | Continente        | Picklist    | -       |
-| Pontos Turísticos | Texto Longo | -       |
+| Pontos Turísticos | Texto Longo | 1000    |
 | Ativo             | Checkbox    | -       |
 
 ### Pacote de Viagem
@@ -41,9 +39,9 @@ Armazena os pacotes de viagem disponibilizados pela agência, reunindo informaç
 
 | Campo              | Tipo            | Tamanho |
 | ------------------ | --------------- | ------- |
-| Nome do Pacote     | Texto           | -       |
+| Nome do Pacote     | Texto           | 50      |
 | Preço Base         | Moeda           | -       |
-| Duração            | Número          | -       |
+| Duração            | Número          | 2       |
 | Nível de Luxo      | Picklist        | -       |
 | Preço Total        | Fórmula         | -       |
 | Número de Reservas | Roll-Up Summary | -       |
@@ -57,7 +55,7 @@ Registra cada contratação de um pacote de viagem realizada por um cliente, inc
 | ID                    | Numeração Automática | -       |
 | Status da Reserva     | Picklist             | -       |
 | Data da Reserva       | Data e Hora          | -       |
-| Quantidade de Membros | Número               | -       |
+| Quantidade de Membros | Número               | 2       |
 | Valor Pago            | Moeda                | -       |
 
 ### Atividade Turística
@@ -66,8 +64,8 @@ Representa as atividades que podem ser oferecidas aos clientes durante a viagem,
 
 | Campo             | Tipo   | Tamanho |
 | ----------------- | ------ | ------- |
-| Nome da Atividade | Texto  | -       |
-| Duração Estimada  | Número | -       |
+| Nome da Atividade | Texto  | 50      |
+| Duração Estimada  | Número | 2       |
 | Custo Adicional   | Moeda  | -       |
 
 ### Pacote-Atividade
@@ -78,7 +76,7 @@ Objeto responsável por associar atividades turísticas aos pacotes de viagem, p
 | ------------------- | -------- | ------- |
 | Pacote de Viagem    | Lookup   | -       |
 | Atividade Turística | Lookup   | -       |
-| Ordem de Exibição   | Número   | -       |
+| Ordem de Exibição   | Número   | 2       |
 | Inclusa por Padrão  | Checkbox | -       |
 
 ### Relacionamentos

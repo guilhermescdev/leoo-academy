@@ -8,15 +8,35 @@ A Horizon Travel é uma agência de viagens que busca modernizar seus processos 
 - [Regras de Negócio](#regras-de-negócio)
 - [Mapeamento de Objetos](#mapeamento-de-objetos)
 - [Funcionalidades](#funcionalidades)
+  - [Field Dependencies](#field-dependencies)
   - [Formulas](#formulas)
+  - [Validation Rules](#validation-rules)
+  - [Record-Triggered Flows](#record-triggered-flows)
 
 # Regras de Negócio
 
+- Um Cliente pode possuir várias Reservas, porém cada Reserva pertence a um único Cliente.
+- Um Destino pode possuir vários Pacotes de Viagem, porém cada Pacote de Viagem pertence a um único Destino.
+- Um Pacote de Viagem pode possuir várias Reservas, porém cada Reserva pertence a um único Pacote de Viagem.
+- Um Pacote de Viagem pode estar associado a várias Atividades Turísticas, e uma Atividade Turística pode estar associada a vários Pacotes de Viagem.
+
+5. Cada Destino deve possuir um `País` compatível com o `Continente` selecionado.
+6. A `Data de Nascimento` do Cliente não pode ser posterior à data atual.
+7. A `Idade` do Cliente deve ser calculada automaticamente a partir da `Data de Nascimento`.
+8. O `Valor Total` da Reserva deve ser calculado automaticamente com base na `Quantidade de Pessoas` e no `Preço Total` do Pacote de Viagem.
+9. Atividades marcadas como `Inclusa por Padrão` não devem adicionar custo ao `Preço Total` do Pacote de Viagem.
+10. Sempre que um registro de Pacote-Atividade for criado ou atualizado, o `Preço Total` do Pacote de Viagem deve ser recalculado.
+11. Sempre que um registro de Pacote-Atividade for excluído, o `Preço Total` do Pacote de Viagem relacionado deve ser atualizado.
+
 # Requisitos
 
-1. O sistema valida se a data de nascimento do cliente é maior que a data atual. [Mostrar](#cliente---data-de-nascimento)
-2. O sistema calcula a idade do cliente automaticamente. [Mostrar](#cliente---idade)
-3. O sistema limita os países de acordo com o contiente selecionado. [Mostrar](#destino---continente---país)
+1. O sistema deve limitar os `Países` de acordo com o `Continente` selecionado.
+2. O sistema deve validar se a `Data de Nascimento` do Cliente não é maior que a data atual.
+3. O sistema deve calcular a `Idade` do Cliente automaticamente.
+4. O sistema deve calcular o `Valor Total` da Reserva automaticamente.
+5. O sistema deve desconsiderar o custo da Atividade Turística quando ela estiver marcada como `Inclusa por Padrão`.
+6. O sistema deve recalcular automaticamente o `Preço Total` do Pacote de Viagem sempre que um registro de Pacote-Atividade for criado ou atualizado.
+7. O sistema deve atualizar o `Preço Total` do Pacote de Viagem quando um registro de Pacote-Atividade for excluído.
 
 # Mapeamento de Objetos
 
@@ -108,6 +128,14 @@ Apresenta os relacionamentos entre os objetos da solução, definindo como os re
 
 # Funcionalidades
 
+## Field Dependencies
+
+### Destino -> (Continente -> País)
+
+Limita o `País` de acordo com o `Contiente` selecionado.
+
+![Print](./prints/fieldContinentePais.png)
+
 ## Validation Rules
 
 ### Cliente -> Data de Nascimento
@@ -117,14 +145,6 @@ A `Data de Nascimento` não pode ser maior que a data atual.
 ```
 Data_de_Nascimento__c > TODAY()
 ```
-
-## Field Dependencies
-
-### Destino -> (Continente -> País)
-
-Limita o `País` de acordo com o `Contiente` selecionado.
-
-![Print](./prints/fieldContinentePais.png)
 
 ## Formulas
 
@@ -165,7 +185,7 @@ IF(
 )
 ```
 
-## Record-Triggered Flow
+## Record-Triggered Flows
 
 ### Pacote-Atividade (Created or Updated) -> Pacote de Viagem (Preço Total)
 

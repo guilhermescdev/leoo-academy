@@ -88,9 +88,10 @@ Registra cada contratação de um pacote de viagem realizada por um cliente, inc
 | Cliente               | Master-Detail        | -       | -        |
 | Pacote de Viagem      | Master-Detail        | -       | -        |
 | Data da Viagem        | Date/Time            | -       | Required |
-| Status da Reserva     | Picklist             | -       | Required |
 | Quantidade de Pessoas | Number               | 2       | Required |
 | Valor Total           | Formula (Currency)   | -       | -        |
+| Forma de Pagamento    | Picklist             | -       | Required |
+| Status da Reserva     | Picklist             | -       | Required |
 
 ## Atividade Turística
 
@@ -109,8 +110,8 @@ Objeto responsável por associar atividades turísticas aos pacotes de viagem, p
 | Campo                    | Tipo               | Tamanho   |
 | ------------------------ | ------------------ | --------- |
 | Nome do Pacote-Atividade | Record Name (Text) | 80        |
-| Pacote de Viagem         | Lookup             | -         |
-| Atividade Turística      | Lookup             | -         |
+| Pacote de Viagem         | Master-Detail      | -         |
+| Atividade Turística      | Master-Detail      | -         |
 | Inclusa por Padrão       | Checkbox           | Unchecked |
 | Valor Considerado        | Formula (Currency) | -         |
 
@@ -118,19 +119,29 @@ Objeto responsável por associar atividades turísticas aos pacotes de viagem, p
 
 Apresenta os relacionamentos entre os objetos da solução, definindo como os registros se conectam, garantindo a integridade dos dados.
 
-| Objeto Origem    | Objeto Destino      | Tipo          |
+| Mestre           | Detalhe             | Tipo          |
 | ---------------- | ------------------- | ------------- |
 | Destino          | Pacote de Viagem    | Master-Detail |
 | Cliente          | Reserva             | Master-Detail |
 | Pacote de Viagem | Reserva             | Master-Detail |
-| Pacote-Atividade | Pacote de Viagem    | Lookup        |
-| Pacote-Atividade | Atividade Turística | Lookup        |
+| Pacote-Atividade | Pacote de Viagem    | Master-Detail |
+| Pacote-Atividade | Atividade Turística | Master-Detail |
 
 # Funcionalidades
 
+## Lookup Filter
+
+### Pacote de Viagem -> Destino **ADD REQUISITO**
+
+Lista apenas os Destinos marcados como `Ativo`.
+
+```
+Destino: Ativo = True
+```
+
 ## Field Dependencies
 
-### Destino -> (Continente -> País)
+### Destino -> Continente -> País
 
 Limita o `País` de acordo com o `Contiente` selecionado.
 
@@ -144,6 +155,25 @@ A `Data de Nascimento` não pode ser maior que a data atual.
 
 ```
 Data_de_Nascimento__c > TODAY()
+```
+
+### Reserva -> Pacote de Viagem **ADD REQUISITO**
+
+Um Pacote de Viagem de `Classe` VIP só pode ser reservado por um `Cliente VIP`.
+
+```
+AND(
+    ISPICKVAL(Pacote_de_Viagem__r.Classe__c, "VIP"),
+    NOT(Cliente__r.Cliente_VIP__c)
+)
+```
+
+### Reserva -> Data da Viagem **ADD REQUISITO**
+
+A `Data da Viagem` não pode ser anterior ao momento atual.
+
+```
+Data_da_Viagem__c < NOW()
 ```
 
 ## Formulas
@@ -181,24 +211,34 @@ Quando `Incluso por Padrão` for marcado, o `Valor Considerado` é zerado para n
 IF(
     Inclusa_por_Padrao__c,
     0,
-    Atividade_Turistica__r.Custo_Adicional__c
+    Atividade_Turistica_M__r.Custo_Adicional__c
 )
 ```
 
 ## Record-Triggered Flows
 
-### Pacote-Atividade (Created or Updated) -> Pacote de Viagem (Preço Total)
+### Pacote-Atividade (Created or Updated) -> Pacote de Viagem -> Preço Total
 
 Quando um Pacote-Atividade é criado ou atualizado, o fluxo calcula o valor do `Preço Total` do Pacote de Viagem:
 
-- Se o Pacote de Viagem for alterado, ele atualiza o `Preço Total` do Pacote de Viagem antigo e calcula o `Preço Total` do novo Pacote de Viagem.
+![Print](./prints/flowAtualizarPreçoTotaldoPacotedeViagemCreatedorUpdated.png)
 
-- Se a Atividade Turística for alterada, ele recalcula o `Preço Total`do Pacote de Viagem.
-
-![Print](./prints/flowAtualizarPrecoTotaldoPacotedeViagemCreatedorUpdated.png)
-
-### Pacote-Atividade (Deleted) -> Pacote de Viagem (Preço Total)
+### Pacote-Atividade (Deleted) -> Pacote de Viagem -> Preço Total
 
 Quando um Pacote-Atividade é deletado, o fluxo subtrai o `Valor Considerado` do `Preço Total` do Pacote de Viagem relacionado.
 
 ![Print](./prints/flowAtualizarPrecoTotaldoPacotedeViagemDeleted.png)
+
+### Atividade Turística(Deleted) -> Pacote-Atividade -> Pacote de Viagem -> Preço Total ADD REQUISITO
+
+Quando uma Atividade Turística é deletada, flow atualiza o `Preço Total` de todos os Pacotes de Viagem que tem aquela Atividade Turística.
+
+![Print](./prints/flowAtualizarPreçoTotaldoPacotedeViagemPorAtividadeTurísticaDeleted.png)
+
+### Pacote-Atividade (Created) -> Atividade Turística ADD REQUISITO
+
+Impede que um Pacote-Atividade seja duplicado ao verificar se aquela `Atividade Turística` já existe naquele Pacote de Viagem.
+
+![Print](./prints/flowAtividadeDuplicadanoMesmoPacotedeViagem.png)
+
+Reserva -> Status da Reserva -> Pagamento Aprovado

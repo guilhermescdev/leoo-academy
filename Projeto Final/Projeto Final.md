@@ -13,30 +13,22 @@ A Horizon Travel é uma agência de viagens que busca modernizar seus processos 
   - [Validation Rules](#validation-rules)
   - [Record-Triggered Flows](#record-triggered-flows)
 
-# Regras de Negócio
+# Regras de Negócio e Requisitos
 
+- O sistema deve permitir o cadastro, edição, a consulta e a exclusão de Clientes, Destinos, Pacotes de Viagem, Reservas e Atividade Turísticas.
 - Um Cliente pode possuir várias Reservas, porém cada Reserva pertence a um único Cliente.
 - Um Destino pode possuir vários Pacotes de Viagem, porém cada Pacote de Viagem pertence a um único Destino.
-- Um Pacote de Viagem pode possuir várias Reservas, porém cada Reserva pertence a um único Pacote de Viagem.
 - Um Pacote de Viagem pode estar associado a várias Atividades Turísticas, e uma Atividade Turística pode estar associada a vários Pacotes de Viagem.
-
-5. Cada Destino deve possuir um `País` compatível com o `Continente` selecionado.
-6. A `Data de Nascimento` do Cliente não pode ser posterior à data atual.
-7. A `Idade` do Cliente deve ser calculada automaticamente a partir da `Data de Nascimento`.
-8. O `Valor Total` da Reserva deve ser calculado automaticamente com base na `Quantidade de Pessoas` e no `Preço Total` do Pacote de Viagem.
-9. Atividades marcadas como `Inclusa por Padrão` não devem adicionar custo ao `Preço Total` do Pacote de Viagem.
-10. Sempre que um registro de Pacote-Atividade for criado ou atualizado, o `Preço Total` do Pacote de Viagem deve ser recalculado.
-11. Sempre que um registro de Pacote-Atividade for excluído, o `Preço Total` do Pacote de Viagem relacionado deve ser atualizado.
-
-# Requisitos
-
-1. O sistema deve limitar os `Países` de acordo com o `Continente` selecionado.
-2. O sistema deve validar se a `Data de Nascimento` do Cliente não é maior que a data atual.
-3. O sistema deve calcular a `Idade` do Cliente automaticamente.
-4. O sistema deve calcular o `Valor Total` da Reserva automaticamente.
-5. O sistema deve desconsiderar o custo da Atividade Turística quando ela estiver marcada como `Inclusa por Padrão`.
-6. O sistema deve recalcular automaticamente o `Preço Total` do Pacote de Viagem sempre que um registro de Pacote-Atividade for criado ou atualizado.
-7. O sistema deve atualizar o `Preço Total` do Pacote de Viagem quando um registro de Pacote-Atividade for excluído.
+- O sistema deve limitar os `Países` de acordo com o `Continente` selecionado.
+- O sistema deve validar se a `Data de Nascimento` do Cliente não é maior que a data atual.
+- O sistema deve calcular automaticamente a `Idade` do Cliente.
+- O sistema deve calcular automaticamente o `Valor Total` da Reserva.
+- O sistema deve desconsiderar o custo da Atividade Turística quando ela estiver marcada como `Inclusa por Padrão`.
+- Um Pacote de Viagem não pode possuir a mesma Atividade Turística mais de uma vez.
+- O sistema deve recalcular automaticamente o `Preço Total` do Pacote de Viagem sempre que houver alterações nas Atividades associadas.
+- O sistema deve enviar um e-mail ao Cliente quando o `Status da Reserva` for alterado para `Pagamento Aprovado`, contendo os detalhes da Reserva e das Atividades.
+- O sistema deve enviar um e-mail ao Cliente quando o `Status da Reserva` for alterado para `Viagem Concluída`, contendo um link para avaliação da experiência da viagem.
+- O sistema deve disponibilizar uma página para que o Cliente avalie sua experiência de viagem por meio de uma nota e um comentário.
 
 # Mapeamento de Objetos
 
@@ -82,16 +74,20 @@ Armazena os pacotes de viagem disponibilizados pela agência, reunindo informaç
 
 Registra cada contratação de um pacote de viagem realizada por um cliente, incluindo informações sobre a reserva, seu status e o valor pago.
 
-| Campo                 | Tipo                 | Tamanho | Detalhes |
-| --------------------- | -------------------- | ------- | -------- |
-| ID                    | Record Name (Number) | -       | -        |
-| Cliente               | Master-Detail        | -       | -        |
-| Pacote de Viagem      | Master-Detail        | -       | -        |
-| Data da Viagem        | Date/Time            | -       | Required |
-| Quantidade de Pessoas | Number               | 2       | Required |
-| Valor Total           | Formula (Currency)   | -       | -        |
-| Forma de Pagamento    | Picklist             | -       | Required |
-| Status da Reserva     | Picklist             | -       | Required |
+| Campo                   | Tipo                 | Tamanho | Detalhes |
+| ----------------------- | -------------------- | ------- | -------- |
+| ID                      | Record Name (Number) | -       | -        |
+| Cliente                 | Master-Detail        | -       | -        |
+| Pacote de Viagem        | Master-Detail        | -       | -        |
+| Data da Viagem          | Date/Time            | -       | Required |
+| Quantidade de Pessoas   | Number               | 2       | Required |
+| Valor Total             | Formula (Currency)   | -       | -        |
+| Forma de Pagamento      | Picklist             | -       | Required |
+| Status da Reserva       | Picklist             | -       | Required |
+| Nota da Avaliação       | Number               | 1       | -        |
+| Comentário da Avaliação | Text Area (Long)     | 5000    | -        |
+| Avaliação Realizada     | Checkbox             | -       | -        |
+| Data da Avaliação       | Date/Time            | -       | -        |
 
 ## Atividade Turística
 
@@ -157,7 +153,7 @@ A `Data de Nascimento` não pode ser maior que a data atual.
 Data_de_Nascimento__c > TODAY()
 ```
 
-### Reserva -> Pacote de Viagem **ADD REQUISITO**
+### Reserva -> Pacote de Viagem ADD REQUISITO
 
 Um Pacote de Viagem de `Classe` VIP só pode ser reservado por um `Cliente VIP`.
 
@@ -168,7 +164,7 @@ AND(
 )
 ```
 
-### Reserva -> Data da Viagem **ADD REQUISITO**
+### Reserva -> Data da Viagem ADD REQUISITO
 
 A `Data da Viagem` não pode ser anterior ao momento atual.
 
@@ -229,16 +225,30 @@ Quando um Pacote-Atividade é deletado, o fluxo subtrai o `Valor Considerado` do
 
 ![Print](./prints/flowAtualizarPrecoTotaldoPacotedeViagemDeleted.png)
 
-### Atividade Turística(Deleted) -> Pacote-Atividade -> Pacote de Viagem -> Preço Total ADD REQUISITO
+### Atividade Turística(Deleted) -> Pacote-Atividade -> Pacote de Viagem -> Preço Total
 
-Quando uma Atividade Turística é deletada, flow atualiza o `Preço Total` de todos os Pacotes de Viagem que tem aquela Atividade Turística.
+Quando uma Atividade Turística é deletada, o fluxo atualiza o `Preço Total` de todos os Pacotes de Viagem que tem aquela Atividade Turística.
 
 ![Print](./prints/flowAtualizarPreçoTotaldoPacotedeViagemPorAtividadeTurísticaDeleted.png)
 
-### Pacote-Atividade (Created) -> Atividade Turística ADD REQUISITO
+### Pacote-Atividade (Created) -> Atividade Turística
 
 Impede que um Pacote-Atividade seja duplicado ao verificar se aquela `Atividade Turística` já existe naquele Pacote de Viagem.
 
 ![Print](./prints/flowAtividadeDuplicadanoMesmoPacotedeViagem.png)
 
-Reserva -> Status da Reserva -> Pagamento Aprovado
+### Reserva (Update) -> Status da Reserva -> Pagamento Aprovado
+
+Quando uma Reserva tem o `Status da Reserva` atualizado para "Pagamento Aprovado", o fluxo busca as informações das Atividades relacionadas ao Pacote de Viagem daquela Reserva e envia um email com todos os detalhes da Reserva para o Cliente.
+
+![Print](./prints/flowPagamentoAprovadoeDetalhesdaReserva.png)
+![Print](./prints/emailPagamentoAprovadoeDetalhesdaReserva.png)
+
+### Reserva (Upade) -> Status da Reserva -> Viagem Concluída
+
+Quando uma Reserva tem o `Status da Reserva` atualizado para "Viagem Concluída", o fluxo envia um email com um link para o Cliente avaliar a experiência de viagem. O link é uma url com o Id da Reserva que leva para uma página feita com LWC ([Componente LWC](./horizon-travel/force-app/main/default/lwc/reservaAvaliacao/)) onde o Cliente pode dar uma nota e deixar um comentário.
+
+![Print](./prints/flowViagemConcluidaeAvaliaçãodeExperiencia.png)
+![Print](./prints/emailViagemConcluidaeAvaliaçãodeExperiencia.png)
+![Print](./prints/siteViagemConcluidaeAvaliaçãodeExperiencia.png)
+![Print](./prints/siteViagemConcluidaeAvaliaçãodeExperiencia2.png)

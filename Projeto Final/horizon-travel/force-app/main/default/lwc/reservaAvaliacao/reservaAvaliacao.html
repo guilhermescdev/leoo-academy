@@ -1,0 +1,130 @@
+<template>
+    <div class="pagina">
+        <template if:true={carregando}>
+            <div class="loading">
+                <lightning-spinner alternative-text="Carregando" size="medium">
+                </lightning-spinner>
+            </div>
+        </template>
+        <template if:false={carregando}>
+            <div class="card">
+                <div class="cabecalho">
+                    <h1>
+                        Horizon Travel
+                    </h1>
+                    <p>
+                        Avaliação da Experiência
+                    </p>
+                </div>
+                <template if:true={reserva}>
+                    <template if:true={jaAvaliada}>
+                        <div class="conteudo">
+                            <div class="centralizado">
+                                <h2>
+                                    ⭐ Obrigado!
+                                </h2>
+                                <p>
+                                    Esta reserva já foi avaliada.
+                                </p>
+                                <p>
+                                    A Horizon Travel agradece seu feedback.
+                                </p>
+                            </div>
+                        </div>
+                    </template>
+                    <template if:false={jaAvaliada}>
+                        <div class="conteudo">
+                            <div class="saudacao">
+                                <p>
+                                    Olá, 
+                                    <strong>
+                                        {reserva.Cliente__r.Name}
+                                    </strong>
+                                    !
+                                </p>
+                                <span>
+                                    Esperamos que sua viagem tenha sido incrível.
+                                    Conte para nós como foi sua experiência.
+                                </span>
+                            </div>
+                            <div class="grid">
+                                <div class="secao">
+                                    <h3>
+                                        Dados da Reserva
+                                    </h3>
+                                    <p>
+                                        <strong>
+                                            Código: 
+                                        </strong>
+                                        {reserva.Name}
+                                    </p>
+                                    <p>
+                                        <strong>
+                                            Pacote: 
+                                        </strong>
+                                        {reserva.Pacote_de_Viagem__r.Name}
+                                    </p>
+                                    <p>
+                                        <strong>
+                                            Destino: 
+                                        </strong>
+                                        {reserva.Pacote_de_Viagem__r.Destino__r.Name}
+                                    </p>
+                                </div>
+                                <div class="secao">
+                                    <h3>
+                                        Avaliação
+                                    </h3>
+                                    <div class="estrelas">
+                                        <span class="estrela" data-value="1" onclick={selecionarNota}>
+                                            ⭐
+                                        </span>
+                                        <span class="estrela" data-value="2" onclick={selecionarNota}>
+                                            ⭐
+                                        </span>
+                                        <span class="estrela" data-value="3" onclick={selecionarNota}>
+                                            ⭐
+                                        </span>
+                                        <span class="estrela" data-value="4" onclick={selecionarNota}>
+                                            ⭐
+                                        </span>
+                                        <span class="estrela" data-value="5" onclick={selecionarNota}>
+                                            ⭐
+                                        </span>
+                                    </div>
+                                    <p class="nota">
+                                        Nota selecionada: 
+                                        <strong>
+                                            {nota}
+                                        </strong>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="comentario">
+                                <lightning-textarea label="Comentário (Opcional)" value={comentario}
+                                    onchange={alterarComentario}>
+                                </lightning-textarea>
+                            </div>
+                            <div class="botao">
+                                <lightning-button variant="brand" label="Enviar Avaliação" onclick={enviarAvaliacao}>
+                                </lightning-button>
+                            </div>
+                        </div>
+                    </template>
+                </template>
+                <template if:true={erro}>
+                    <div class="conteudo">
+                        <div class="centralizado erro">
+                            <h2>
+                                Erro
+                            </h2>
+                            <p>
+                                Não foi possível localizar esta reserva.
+                            </p>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+    </div>
+</template>

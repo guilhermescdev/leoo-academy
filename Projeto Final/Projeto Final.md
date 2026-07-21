@@ -26,6 +26,9 @@ A Horizon Travel é uma agência de viagens que busca modernizar seus processos 
 - O sistema deve desconsiderar o custo da Atividade Turística quando ela estiver marcada como `Inclusa por Padrão`.
 - Um Pacote de Viagem não pode possuir a mesma Atividade Turística mais de uma vez.
 - O sistema deve recalcular automaticamente o `Preço Total` do Pacote de Viagem sempre que houver alterações nas Atividades associadas.
+- O sistema deve permitir a seleção apenas de Destinos com `Ativo` marcado.
+- Um Pacote de Viagem com `Classe` igual a `VIP` só pode ser reservado por Clientes marcados como `Cliente VIP`.
+- A `Data da Viagem` não pode ser anterior à data e hora atuais.
 - O sistema deve enviar um e-mail ao Cliente quando o `Status da Reserva` for alterado para `Pagamento Aprovado`, contendo os detalhes da Reserva e das Atividades.
 - O sistema deve enviar um e-mail ao Cliente quando o `Status da Reserva` for alterado para `Viagem Concluída`, contendo um link para avaliação da experiência da viagem.
 - O sistema deve disponibilizar uma página para que o Cliente avalie sua experiência de viagem por meio de uma nota e um comentário.
@@ -127,7 +130,7 @@ Apresenta os relacionamentos entre os objetos da solução, definindo como os re
 
 ## Lookup Filter
 
-### Pacote de Viagem -> Destino **ADD REQUISITO**
+### Pacote de Viagem -> Destino
 
 Lista apenas os Destinos marcados como `Ativo`.
 
@@ -153,7 +156,7 @@ A `Data de Nascimento` não pode ser maior que a data atual.
 Data_de_Nascimento__c > TODAY()
 ```
 
-### Reserva -> Pacote de Viagem ADD REQUISITO
+### Reserva -> Pacote de Viagem
 
 Um Pacote de Viagem de `Classe` VIP só pode ser reservado por um `Cliente VIP`.
 
@@ -164,7 +167,7 @@ AND(
 )
 ```
 
-### Reserva -> Data da Viagem ADD REQUISITO
+### Reserva -> Data da Viagem
 
 A `Data da Viagem` não pode ser anterior ao momento atual.
 

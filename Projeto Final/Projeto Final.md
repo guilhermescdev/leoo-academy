@@ -12,6 +12,9 @@ A Horizon Travel é uma agência de viagens que busca modernizar seus processos 
   - [Formulas](#formulas)
   - [Validation Rules](#validation-rules)
   - [Record-Triggered Flows](#record-triggered-flows)
+  - [Apex](#apex)
+  - [Triggers](#triggers)
+  - [LWC](#lwc)
 
 # Regras de Negócio e Requisitos
 
@@ -144,9 +147,22 @@ Destino: Ativo = True
 
 Limita o `País` de acordo com o `Contiente` selecionado.
 
-![Print](./prints/fieldContinentePais.png)
+![Print](./imgs/prints/fieldContinentePais.png)
 
 ## Validation Rules
+
+### Cliente -> CPF ADD
+
+O `CPF` deve estar no formato 000.000.000-00.
+
+```
+NOT(
+    REGEX(
+        CPF__c,
+        "[0-9]{3}\\.[0-9]{3}\\.[0-9]{3}-[0-9]{2}"
+    )
+)
+```
 
 ### Cliente -> Data de Nascimento
 
@@ -220,38 +236,57 @@ IF(
 
 Quando um Pacote-Atividade é criado ou atualizado, o fluxo calcula o valor do `Preço Total` do Pacote de Viagem:
 
-![Print](./prints/flowAtualizarPreçoTotaldoPacotedeViagemCreatedorUpdated.png)
+![Print](./imgs/prints/flowAtualizarPreçoTotaldoPacotedeViagemCreatedorUpdated.png)
 
 ### Pacote-Atividade (Deleted) -> Pacote de Viagem -> Preço Total
 
 Quando um Pacote-Atividade é deletado, o fluxo subtrai o `Valor Considerado` do `Preço Total` do Pacote de Viagem relacionado.
 
-![Print](./prints/flowAtualizarPrecoTotaldoPacotedeViagemDeleted.png)
+![Print](./imgs/prints/flowAtualizarPrecoTotaldoPacotedeViagemDeleted.png)
 
 ### Atividade Turística(Deleted) -> Pacote-Atividade -> Pacote de Viagem -> Preço Total
 
 Quando uma Atividade Turística é deletada, o fluxo atualiza o `Preço Total` de todos os Pacotes de Viagem que tem aquela Atividade Turística.
 
-![Print](./prints/flowAtualizarPreçoTotaldoPacotedeViagemPorAtividadeTurísticaDeleted.png)
+![Print](./imgs/prints/flowAtualizarPreçoTotaldoPacotedeViagemPorAtividadeTurísticaDeleted.png)
 
 ### Pacote-Atividade (Created) -> Atividade Turística
 
 Impede que um Pacote-Atividade seja duplicado ao verificar se aquela `Atividade Turística` já existe naquele Pacote de Viagem.
 
-![Print](./prints/flowAtividadeDuplicadanoMesmoPacotedeViagem.png)
+![Print](./imgs/prints/flowAtividadeDuplicadanoMesmoPacotedeViagem.png)
 
 ### Reserva (Update) -> Status da Reserva -> Pagamento Aprovado
 
 Quando uma Reserva tem o `Status da Reserva` atualizado para "Pagamento Aprovado", o fluxo busca as informações das Atividades relacionadas ao Pacote de Viagem daquela Reserva e envia um email com todos os detalhes da Reserva para o Cliente.
 
-![Print](./prints/flowPagamentoAprovadoeDetalhesdaReserva.png)
-![Print](./prints/emailPagamentoAprovadoeDetalhesdaReserva.png)
+![Print](./imgs/prints/flowPagamentoAprovadoeDetalhesdaReserva.png)
+![Print](./imgs/prints/emailPagamentoAprovadoeDetalhesdaReserva.png)
 
-### Reserva (Upade) -> Status da Reserva -> Viagem Concluída
+### Reserva (Update) -> Status da Reserva -> Viagem Concluída
 
-Quando uma Reserva tem o `Status da Reserva` atualizado para "Viagem Concluída", o fluxo envia um email com um link para o Cliente avaliar a experiência de viagem. O link é uma url com o Id da Reserva que leva para uma página feita com LWC ([Componente LWC](./horizon-travel/force-app/main/default/lwc/reservaAvaliacao/)) onde o Cliente pode dar uma nota e deixar um comentário.
+Quando uma Reserva tem o `Status da Reserva` atualizado para "Viagem Concluída", o fluxo envia um email com um link para o Cliente avaliar a experiência de viagem.
 
-![Print](./prints/flowViagemConcluidaeAvaliaçãodeExperiencia.png)
-![Print](./prints/emailViagemConcluidaeAvaliaçãodeExperiencia.png)
-![Print](./prints/siteViagemConcluidaeAvaliaçãodeExperiencia.png)
-![Print](./prints/siteViagemConcluidaeAvaliaçãodeExperiencia2.png)
+![Print](./imgs/prints/flowViagemConcluidaeAvaliaçãodeExperiencia.png)
+![Print](./imgs/prints/emailViagemConcluidaeAvaliaçãodeExperiencia.png)
+
+## Apex
+
+### ReservaAvaliacaoController
+
+Classe criada para buscar algumas informações da Reserva e para permitir que avalição de experiência de viagem do Cliente seja salva corretamente no registro da Reserva relacionada.
+
+- [Código](./horizon-travel/force-app/main/default/classes/ReservaAvaliacaoController.cls)
+
+## Triggers
+
+## LWC
+
+### reservaAvaliacao
+
+Componente criado e publicado no Digital Experiences para que o Cliente possa avaliar a experiência de viagem, sendo acessado pelo link enviado ao email do Cliente.
+
+- [Código](./horizon-travel/force-app/main/default/lwc/reservaAvaliacao)
+
+![Print](./imgs/prints/lwcViagemConcluidaeAvaliaçãodeExperiencia.png)
+![Print](./imgs/prints/lwcViagemConcluidaeAvaliaçãodeExperiencia2.png)

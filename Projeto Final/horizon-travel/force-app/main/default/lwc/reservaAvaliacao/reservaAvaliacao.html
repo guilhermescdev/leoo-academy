@@ -1,130 +1,96 @@
 <template>
-    <div class="pagina">
-        <template if:true={carregando}>
-            <div class="loading">
-                <lightning-spinner alternative-text="Carregando" size="medium">
-                </lightning-spinner>
+  <div class="pagina">
+    <template if:true={carregando}>
+      <div class="loading">
+        <lightning-spinner alternative-text="Carregando" size="medium"></lightning-spinner>
+      </div>
+    </template>
+
+    <template if:false={carregando}>
+      <div class="card">
+        <!-- FAIXA DE TOPO AZUL -->
+        <div class="faixa-topo"></div>
+
+        <!-- CABEÇALHO EM TEXTO -->
+        <div class="cabecalho">
+          <h1 class="titulo-principal">Horizon Travel</h1>
+          <p class="subtitulo">Avaliação da Experiência</p>
+        </div>
+
+        <template if:true={reserva}>
+          <template if:true={jaAvaliada}>
+            <div class="conteudo">
+              <div class="centralizado sucesso">
+                <div class="icone-sucesso">⭐</div>
+                <h2>Obrigado!</h2>
+                <p>Esta reserva já foi avaliada.</p>
+                <p class="subtext">A Horizon Travel agradece o seu feedback!</p>
+              </div>
             </div>
-        </template>
-        <template if:false={carregando}>
-            <div class="card">
-                <div class="cabecalho">
-                    <h1>
-                        Horizon Travel
-                    </h1>
-                    <p>
-                        Avaliação da Experiência
-                    </p>
+          </template>
+
+          <template if:false={jaAvaliada}>
+            <div class="conteudo">
+              <div class="saudacao">
+                <h2>Olá, <span>{reserva.Cliente__r.Name}</span>!</h2>
+                <p>Esperamos que sua viagem tenha sido incrível. Conte para nós como foi sua experiência!</p>
+              </div>
+
+              <div class="grid">
+                <div class="secao">
+                  <h3>Dados da Reserva</h3>
+                  <div class="info-grupo">
+                    <p><strong>Código:</strong> {reserva.Name}</p>
+                    <p><strong>Pacote:</strong> {reserva.Pacote_de_Viagem__r.Name}</p>
+                    <p><strong>Destino:</strong> {reserva.Pacote_de_Viagem__r.Destino__r.Name}</p>
+                  </div>
                 </div>
-                <template if:true={reserva}>
-                    <template if:true={jaAvaliada}>
-                        <div class="conteudo">
-                            <div class="centralizado">
-                                <h2>
-                                    ⭐ Obrigado!
-                                </h2>
-                                <p>
-                                    Esta reserva já foi avaliada.
-                                </p>
-                                <p>
-                                    A Horizon Travel agradece seu feedback.
-                                </p>
-                            </div>
-                        </div>
-                    </template>
-                    <template if:false={jaAvaliada}>
-                        <div class="conteudo">
-                            <div class="saudacao">
-                                <p>
-                                    Olá, 
-                                    <strong>
-                                        {reserva.Cliente__r.Name}
-                                    </strong>
-                                    !
-                                </p>
-                                <span>
-                                    Esperamos que sua viagem tenha sido incrível.
-                                    Conte para nós como foi sua experiência.
-                                </span>
-                            </div>
-                            <div class="grid">
-                                <div class="secao">
-                                    <h3>
-                                        Dados da Reserva
-                                    </h3>
-                                    <p>
-                                        <strong>
-                                            Código: 
-                                        </strong>
-                                        {reserva.Name}
-                                    </p>
-                                    <p>
-                                        <strong>
-                                            Pacote: 
-                                        </strong>
-                                        {reserva.Pacote_de_Viagem__r.Name}
-                                    </p>
-                                    <p>
-                                        <strong>
-                                            Destino: 
-                                        </strong>
-                                        {reserva.Pacote_de_Viagem__r.Destino__r.Name}
-                                    </p>
-                                </div>
-                                <div class="secao">
-                                    <h3>
-                                        Avaliação
-                                    </h3>
-                                    <div class="estrelas">
-                                        <span class="estrela" data-value="1" onclick={selecionarNota}>
-                                            ⭐
-                                        </span>
-                                        <span class="estrela" data-value="2" onclick={selecionarNota}>
-                                            ⭐
-                                        </span>
-                                        <span class="estrela" data-value="3" onclick={selecionarNota}>
-                                            ⭐
-                                        </span>
-                                        <span class="estrela" data-value="4" onclick={selecionarNota}>
-                                            ⭐
-                                        </span>
-                                        <span class="estrela" data-value="5" onclick={selecionarNota}>
-                                            ⭐
-                                        </span>
-                                    </div>
-                                    <p class="nota">
-                                        Nota selecionada: 
-                                        <strong>
-                                            {nota}
-                                        </strong>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="comentario">
-                                <lightning-textarea label="Comentário (Opcional)" value={comentario}
-                                    onchange={alterarComentario}>
-                                </lightning-textarea>
-                            </div>
-                            <div class="botao">
-                                <lightning-button variant="brand" label="Enviar Avaliação" onclick={enviarAvaliacao}>
-                                </lightning-button>
-                            </div>
-                        </div>
-                    </template>
-                </template>
-                <template if:true={erro}>
-                    <div class="conteudo">
-                        <div class="centralizado erro">
-                            <h2>
-                                Erro
-                            </h2>
-                            <p>
-                                Não foi possível localizar esta reserva.
-                            </p>
-                        </div>
-                    </div>
-                </template>
+
+                <div class="secao secao-avaliacao">
+                  <h3>Sua Nota</h3>
+                  <div class="estrelas">
+                    <span class="estrela" data-value="1" onclick={selecionarNota}>⭐</span>
+                    <span class="estrela" data-value="2" onclick={selecionarNota}>⭐</span>
+                    <span class="estrela" data-value="3" onclick={selecionarNota}>⭐</span>
+                    <span class="estrela" data-value="4" onclick={selecionarNota}>⭐</span>
+                    <span class="estrela" data-value="5" onclick={selecionarNota}>⭐</span>
+                  </div>
+                  <p class="nota">
+                    Nota selecionada: <strong>{nota}</strong> / 5
+                  </p>
+                </div>
+              </div>
+
+              <div class="comentario">
+                <lightning-textarea 
+                  label="Comentário (Opcional)" 
+                  value={comentario}
+                  onchange={alterarComentario}
+                  placeholder="Conte-nos mais detalhes sobre os pontos fortes ou o que podemos melhorar..."
+                ></lightning-textarea>
+              </div>
+
+              <div class="botao">
+                <lightning-button 
+                  variant="brand" 
+                  label="Enviar Avaliação" 
+                  onclick={enviarAvaliacao}
+                  class="btn-enviar"
+                ></lightning-button>
+              </div>
             </div>
+          </template>
         </template>
-    </div>
+
+        <template if:true={erro}>
+          <div class="conteudo">
+            <div class="centralizado erro">
+              <h2>Atenção</h2>
+              <p>Não foi possível localizar esta reserva.</p>
+            </div>
+          </div>
+        </template>
+      </div>
+    </template>
+  </div>
 </template>

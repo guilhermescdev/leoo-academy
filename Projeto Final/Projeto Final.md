@@ -409,9 +409,9 @@ Componente criado e publicado no Digital Experiences para que o Cliente possa av
 
 - [Código](./horizon-travel/force-app/main/default/lwc/reservaAvaliacao)
 
-<img src="./imgs/prints/lwcViagemConcluidaeAvaliaçãodeExperiencia.png" width="30%">
+<img src="./imgs/prints/lwcViagemConcluidaeAvaliaçãodeExperiencia.png" width="30%">
 
-<img src="./imgs/prints/lwcViagemConcluidaeAvaliaçãodeExperiencia2.png" width="30%">
+<img src="./imgs/prints/lwcViagemConcluidaeAvaliaçãodeExperiencia2.png" width="30%">
 
 # Outra Configurações
 

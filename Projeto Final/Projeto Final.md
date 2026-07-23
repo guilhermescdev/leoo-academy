@@ -1,6 +1,6 @@
 # Horizon Travel
 
-A Horizon Travel é uma agência de viagens que busca modernizar seus processos e centralizar o gerenciamento de clientes, destinos, pacotes turísticos, reservas e atividades em uma única plataforma. Para isso, a empresa adotará o Salesforce como seu sistema de CRM, permitindo uma gestão mais eficiente das informações, automação de processos e melhor acompanhamento das operações.
+A Horizon Travel é uma agência de viagens que busca modernizar seus processos e centralizar o gerenciamento de clientes, destinos, pacotes de viagem, reservas e atividades turísticas em uma única plataforma. Para isso, a empresa adotará o Salesforce como seu sistema de CRM, permitindo uma gestão mais eficiente das informações, automação de processos e melhor acompanhamento das operações.
 
 - [Regras de Negócio](#regras-de-negócio)
 - [Requisitos](#requisitos)
@@ -153,6 +153,8 @@ Apresenta os relacionamentos entre os objetos da solução, definindo como os re
 | Pacote de Viagem | Reserva             | Master-Detail |
 | Pacote-Atividade | Pacote de Viagem    | Master-Detail |
 | Pacote-Atividade | Atividade Turística | Master-Detail |
+
+<img src="./imgs/prints/telaSchemaBuilder.png">
 
 # Funcionalidades
 

@@ -14,7 +14,7 @@ A Horizon Travel é uma agência de viagens que busca modernizar seus processos 
   - [Apex](#apex)
   - [Triggers](#triggers)
   - [LWC](#lwc)
-- [Configurações](#configurações)
+- [Outras Configurações](#outras-configurações)
   - [Carga de Dados](#carga-de-dados)
   - [Themes and Branding](#themes-and-branding)
   - [Digital Experiences](#digital-experiences)
@@ -413,7 +413,7 @@ Componente criado e publicado no Digital Experiences para que o Cliente possa av
 
 <img src="./imgs/prints/lwcViagemConcluidaeAvaliaçãodeExperiencia2.png" width="30%">
 
-# Outra Configurações
+# Outras Configurações
 
 ## Carga de Dados
 

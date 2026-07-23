@@ -1,0 +1,7 @@
+Nome do Pacote,Destino,Necessario Passaporte,Classe,Duracao (Dia),Preco Base
+Paris Classica,Paris,TRUE,VIP,7,8500
+Toquio Premium,Toquio,TRUE,VIP,10,14500
+Pequim Imperial,Pequim,TRUE,Normal,9,9800
+Rio Maravilhoso,Rio de Janeiro,FALSE,Normal,5,3200
+Nova York Experience,Nova York,TRUE,VIP,8,12500
+Sydney Adventure,Sydney,TRUE,VIP,10,15800

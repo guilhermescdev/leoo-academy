@@ -1,0 +1,12 @@
+Nome do Destino,Continente,Pais,Ativo,Pontos Turisticos
+Paris,Europa,Franca,TRUE,Torre Eiffel; Museu do Louvre; Arco do Triunfo
+Roma,Europa,Italia,TRUE,Coliseu; Forum Romano; Fontana di Trevi
+Lisboa,Europa,Portugal,TRUE,Torre de Belem; Mosteiro dos Jeronimos; Praca do Comercio
+Toquio,Asia,Japao,TRUE,Templo Senso-ji; Shibuya Crossing; Tokyo Tower
+Seul,Asia,Coreia do Sul,FALSE,Palacio Gyeongbokgung; N Seoul Tower; Bukchon Hanok Village
+Pequim,Asia,China,TRUE,Cidade Proibida; Grande Muralha; Templo do Ceu
+Rio de Janeiro,America,Brasil,TRUE,Cristo Redentor; Pao de Acucar; Praia de Copacabana
+Nova York,America,Estados Unidos,TRUE,Central Park; Times Square; Estatua da Liberdade
+Toronto,America,Canada,FALSE,CN Tower; Ripley's Aquarium; Distillery District
+Sydney,Oceania,Australia,TRUE,Opera House; Harbour Bridge; Bondi Beach
+Queenstown,Oceania,Nova Zelandia,FALSE,Lake Wakatipu; Skyline Gondola; The Remarkables

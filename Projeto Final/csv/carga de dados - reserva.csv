@@ -1,0 +1,12 @@
+Cliente,Pacote de Viagem,Quantidade de Pessoas,Data da Viagem,Forma de Pagamento,Status da Reserva,Avaliacao Realizada,Data da Avaliacao,Nota da Avaliacao,Comentario da Avaliacao
+Lucas Almeida,Paris Classica,2,15/09/2026 09:00,Cartao de Credito,Pagamento Aprovado,,,,
+Ana Beatriz,Toquio Premium,6,05/10/2026 14:00,PIX,Pagamento Aprovado,,,,
+Gustavo Lima,Sydney Adventure,10,18/11/2026 08:30,Cartao de Credito,Aguardando Pagamento,,,,
+Juliana Melo,Nova York Experience,4,22/09/2026 11:00,Transferencia,Pagamento Aprovado,,,,
+Mariana Costa,Pequim Imperial,3,30/10/2026 13:30,PIX,Viagem em Andamento,,,,
+Camila Martins,Pequim Imperial,5,12/11/2026 15:00,Cartao de Debito,Pagamento Aprovado,,,,
+Pedro Henrique,Rio Maravilhoso,2,08/08/2026 09:30,PIX,Viagem Concluida,TRUE,15/08/2026 18:20,5,Viagem excelente. Atendimento impecavel e roteiro muito bem organizado.
+Rafael Souza,Rio Maravilhoso,8,25/09/2026 10:00,Cartao de Credito,Viagem Concluida,TRUE,01/10/2026 20:15,4,Gostei bastante da viagem. Apenas alguns atrasos nos passeios.
+Bruno Carvalho,Pequim Imperial,10,28/12/2026 07:30,Cartao de Credito,Aguardando Pagamento,,,,
+Lucas Almeida,Sydney Adventure,4,10/01/2027 12:00,PIX,Aguardando Pagamento,,,,
+Gustavo Lima,Paris Classica,7,20/02/2027 09:00,Cartao de Credito,Pagamento Aprovado,,,,
